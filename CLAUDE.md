@@ -30,8 +30,11 @@ Las maquetas y borradores de diseño (`*.dc.html`, `support.js`) están en
 
 ## Criterios de diseño
 
-- **Modo oscuro permanente.** El sitio no tiene tema claro ni conmutador de tema.
-  No añadir bloques `@media (prefers-color-scheme: light)`.
+- **Modo oscuro permanente** en `index.html`. No hay tema claro ni conmutador de
+  tema; no añadir bloques `@media (prefers-color-scheme: light)`.
+- **Excepción:** `privacy-policy.html` conserva a propósito su paleta clara y
+  serif propia (fondo `#fbfaf7`, acento `#2f6f5e`). Es un documento legal con
+  identidad propia: **no unificar sus colores con los de la home.**
 - Paleta base: fondo `#121316`, texto `#F2F1EE`, texto secundario `#8B8E94`,
   bordes `rgba(255,255,255,.09)`, acento de marca `#7C83FF`.
 - Tipografías (Google Fonts): `Space Grotesk` para títulos, `Inter` para texto,
