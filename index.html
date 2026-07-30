@@ -3,86 +3,317 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RoxCraft</title>
-<meta name="description" content="RoxCraft — aplicaciones Android.">
+<title>RoxCraft-dev — Desarrollador Android independiente</title>
+<meta name="description" content="RoxCraft-dev — desarrollador Android independiente. Aplicaciones Android para mejorar la productividad, automatizar tareas y simplificar el uso diario de tus dispositivos.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#121316">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1c2321;
-    --ink-soft: #4a5450;
-    --paper: #fbfaf7;
-    --line: #dedad2;
-    --accent: #2f6f5e;
+    color-scheme: dark;
+    --bg: #121316;
+    --surface: #0C0D12;
+    --surface-2: #15161D;
+    --border: rgba(255, 255, 255, .09);
+    --border-soft: rgba(255, 255, 255, .07);
+    --text: #F2F1EE;
+    --text-card: #ECEBF3;
+    --muted: #8B8E94;
+    --muted-card: #7E7D90;
+    --accent: oklch(58% 0.13 255);
+    --brand: #7C83FF;
+    --brand-soft: rgba(124, 131, 255, .14);
+    --brand-alt: #B07CFF;
+    --sans: 'Inter', system-ui, sans-serif;
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --card: 'Outfit', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --pad-x: 48px;
   }
+
   * { box-sizing: border-box; }
+
   body {
     margin: 0;
-    min-height: 100vh;
+    /* El pie queda pegado al fondo de la ventana cuando el contenido no llega
+       a llenarla, y baja con normalidad cuando sí la supera. */
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Georgia', 'Iowan Old Style', serif;
-    line-height: 1.65;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap {
-    max-width: 560px;
-    padding: 48px 24px;
-    text-align: center;
-  }
+
+  main { flex: 1 0 auto; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: oklch(50% 0.13 255); }
+
   .eyebrow {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--mono);
     font-size: 12px;
-    letter-spacing: 0.14em;
+    font-weight: 500;
+    letter-spacing: .12em;
     text-transform: uppercase;
+  }
+
+  /* ---------- Header ---------- */
+
+  .site-header {
+    padding: 48px var(--pad-x) 120px;
+    max-width: 820px;
+  }
+
+  .site-header .eyebrow {
     color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .site-header h1 {
+    font-family: var(--display);
     font-weight: 700;
-    margin: 0 0 12px;
-  }
-  h1 {
-    font-size: 40px;
-    margin: 0 0 12px;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-  p { font-size: 17px; color: var(--ink-soft); margin: 0 0 32px; }
-  .apps {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 24px 0;
-    margin-bottom: 32px;
-  }
-  .app-name {
-    font-size: 19px;
-    margin: 0 0 4px;
-  }
-  .app-desc {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14px;
-    color: var(--ink-soft);
+    font-size: 64px;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
     margin: 0;
   }
-  .links {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14px;
+
+  /* ---------- Proyectos ---------- */
+
+  .projects {
+    padding: 24px var(--pad-x) 80px;
+    border-top: 1px solid var(--border);
   }
-  a { color: var(--accent); }
+
+  .projects > .eyebrow {
+    letter-spacing: .1em;
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+
+  .project {
+    position: relative;
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 36px;
+    font-family: var(--card);
+    color: var(--text-card);
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--brand);
+    background: var(--brand-soft);
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  .project > .badge {
+    position: absolute;
+    top: 28px;
+    right: 32px;
+  }
+
+  .project-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .project-mark {
+    position: relative;
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: #1E1F28;
+  }
+
+  .project-mark span {
+    position: absolute;
+    top: 17px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+  }
+
+  .project-mark span:first-child { left: 11px; border: 2.5px solid var(--brand); }
+  .project-mark span:last-child { right: 11px; border: 2.5px solid var(--brand-alt); }
+
+  .project-name {
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -.01em;
+  }
+
+  .project-kind {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted-card);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .project-desc {
+    font-weight: 300;
+    font-size: 14.5px;
+    color: var(--muted-card);
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0 0 24px;
+  }
+
+  .app-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .app {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 16px 18px;
+    color: inherit;
+  }
+
+  a.app {
+    transition: border-color .18s ease, background .18s ease;
+  }
+
+  a.app:hover,
+  a.app:focus-visible {
+    color: inherit;
+    background: #1A1B24;
+    border-color: rgba(124, 131, 255, .35);
+  }
+
+  a.app:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  .app-body { flex: 1; }
+
+  .app-name {
+    font-weight: 600;
+    font-size: 14.5px;
+  }
+
+  .app-desc {
+    font-weight: 300;
+    font-size: 12.5px;
+    color: var(--muted-card);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  .app .badge {
+    flex: 0 0 auto;
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+
+  /* ---------- Footer ---------- */
+
+  .site-footer {
+    padding: 32px var(--pad-x);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .site-footer nav {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .site-footer a { color: var(--muted); }
+  .site-footer a:hover { color: var(--text); }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 720px) {
+    :root { --pad-x: 24px; }
+    .site-header { padding-top: 40px; padding-bottom: 80px; }
+    .site-header h1 { font-size: 40px; }
+    .project { padding: 24px; }
+    .project > .badge { position: static; display: inline-block; margin-bottom: 20px; }
+    .app { flex-wrap: wrap; }
+  }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <p class="eyebrow">RoxCraft</p>
-    <h1>Aplicaciones Android</h1>
-    <p>Utilidades sencillas, cuidadas y sin complicaciones.</p>
 
-    <div class="apps">
-      <p class="app-name">Nexo Sleep Timer</p>
-      <p class="app-desc">Detén la reproducción y apaga la pantalla cuando te duermas.</p>
-    </div>
+  <header class="site-header">
+    <p class="eyebrow">Desarrollador Android independiente</p>
+    <h1>RoxCraft-dev</h1>
+  </header>
 
-    <p class="links">
-      <a href="privacy-policy.html">Política de Privacidad</a>
-    </p>
-  </div>
+  <main>
+    <section class="projects" id="proyectos">
+      <h2 class="eyebrow">Proyectos</h2>
+
+      <article class="project">
+        <span class="badge">Próximamente</span>
+
+        <div class="project-head">
+          <div class="project-mark" aria-hidden="true"><span></span><span></span></div>
+          <div>
+            <h3 class="project-name">Nexo</h3>
+            <p class="project-kind">Familia de apps Android</p>
+          </div>
+        </div>
+
+        <p class="project-desc">Una familia de aplicaciones Android diseñada para mejorar la productividad, automatizar tareas y simplificar el uso diario de tus dispositivos.</p>
+
+        <div class="app-list">
+          <a class="app" href="privacy-policy.html">
+            <div class="app-body">
+              <div class="app-name">Nexo Sleep Timer</div>
+              <div class="app-desc">Dormir sin preocuparte por dejar el móvil reproduciendo contenido toda la noche.</div>
+            </div>
+            <span class="badge">Próximamente</span>
+          </a>
+
+          <div class="app">
+            <div class="app-body">
+              <div class="app-name">Nexo Mouse &amp; Keyboard Bluetooth</div>
+              <div class="app-desc">Utiliza tu teléfono como un periférico Bluetooth HID y controla cualquier ordenador desde la palma de tu mano.</div>
+            </div>
+            <span class="badge">Próximamente</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2026 RoxCraft-dev</div>
+    <nav>
+      <a href="mailto:rodrigo.robledogarcia.dev@gmail.com">rodrigo.robledogarcia.dev@gmail.com</a>
+      <a href="https://github.com/roxcraft-dev">github.com/roxcraft-dev</a>
+    </nav>
+  </footer>
+
 </body>
 </html>

@@ -1,0 +1,9 @@
+# Maquetas y borradores de diseño (no forman parte del sitio publicado)
+*.dc.html
+support.js
+
+# Sistema operativo / editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
