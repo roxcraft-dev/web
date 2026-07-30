@@ -37,12 +37,19 @@
 
   body {
     margin: 0;
+    /* El pie queda pegado al fondo de la ventana cuando el contenido no llega
+       a llenarla, y baja con normalidad cuando sí la supera. */
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
+    min-height: 100dvh;
     background: var(--bg);
     color: var(--text);
     font-family: var(--sans);
     -webkit-font-smoothing: antialiased;
   }
+
+  main { flex: 1 0 auto; }
 
   a { color: var(--accent); text-decoration: none; }
   a:hover { color: oklch(50% 0.13 255); }
