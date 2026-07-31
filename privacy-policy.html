@@ -108,6 +108,47 @@
     text-transform: uppercase;
   }
   a { color: var(--accent); }
+  /* Selector de idioma. Sin JavaScript queda oculto (atributo hidden) y se
+     muestran los dos idiomas seguidos: un documento legal nunca debe quedarse
+     en blanco por depender de un script. */
+  .langbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .langbar button {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .langbar button:hover { color: var(--accent); border-color: var(--accent); }
+  .langbar button[aria-pressed="true"] {
+    color: var(--paper);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  html[data-lang="es"] #lang-en,
+  html[data-lang="en"] #lang-es { display: none; }
+  /* Separador entre ambos idiomas en el modo sin JavaScript. */
+  #lang-en { border-top: 2px solid var(--ink); padding-top: 40px; margin-top: 64px; }
+  html[data-lang] #lang-en { border-top: 0; padding-top: 0; margin-top: 0; }
+  .translation-note {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin: 0 0 24px;
+  }
   footer {
     margin-top: 56px;
     padding-top: 24px;
@@ -126,10 +167,17 @@
 <body>
 <div class="wrap">
 
+  <div class="langbar" id="langbar" hidden>
+    <button type="button" data-lang="es" lang="es">Español</button>
+    <button type="button" data-lang="en" lang="en">English</button>
+  </div>
+
+<div class="lang" id="lang-es" lang="es">
+
   <header>
     <p class="eyebrow">Nexo Sleep Timer · Documento legal</p>
     <h1>Política de Privacidad</h1>
-    <p class="meta">Última actualización: 30 de julio de 2026</p>
+    <p class="meta">Última actualización: 31 de julio de 2026</p>
   </header>
 
   <p>Esta política explica qué datos trata <strong>Nexo Sleep Timer</strong> (identificador de aplicación <code>com.roxcraft.nexosleeptimer</code>), con qué finalidad, con qué base jurídica, durante cuánto tiempo y qué opciones tienes al respecto. Está redactada conforme al Reglamento General de Protección de Datos (RGPD, UE 2016/679) y a la Ley Orgánica 3/2018 (LOPDGDD).</p>
@@ -144,7 +192,7 @@
     <li>La app <strong>no requiere registro ni cuenta de usuario</strong>. No pedimos nombre, email, teléfono ni ningún dato identificativo.</li>
     <li><strong>No solicitamos ningún permiso de ubicación.</strong> La app no accede al GPS ni a tu ubicación precisa en ningún momento.</li>
     <li><strong>No accedemos a tus contactos, fotos, archivos, micrófono ni cámara.</strong></li>
-    <li><strong>No leemos el contenido de tus notificaciones</strong>, ni siquiera cuando concedes el acceso descrito en la sección 06.</li>
+    <li><strong>No leemos el contenido de tus notificaciones</strong>, ni siquiera cuando concedes el acceso descrito en la sección 07.</li>
     <li><strong>No vendemos datos</strong> a terceros ni los usamos con fines distintos a los descritos aquí.</li>
   </ul>
 
@@ -201,7 +249,21 @@
   <p><strong>Puedes cambiar o retirar tu decisión en cualquier momento</strong> desde <em>Ajustes → Configuración de privacidad</em> dentro de la app. Retirar el consentimiento no afecta a la licitud del tratamiento previo.</p>
   <p>Con independencia de lo anterior, Android te permite <strong>restablecer o eliminar tu identificador de publicidad</strong> desde <em>Ajustes del sistema → Google → Anuncios</em>.</p>
 
-  <h2><span class="num">06</span>Permisos del dispositivo</h2>
+  <h2><span class="num">06</span>Almacenamiento en el dispositivo y tecnologías similares</h2>
+  <p>Nexo Sleep Timer <strong>no utiliza cookies propias</strong>: es una aplicación nativa de Android, sin navegador ni sesiones web asociadas a este sitio. Ahora bien, la normativa sobre esta materia —el artículo 5.3 de la Directiva 2002/58/CE y, en España, el artículo 22.2 de la LSSI— es neutra respecto a la tecnología: no habla de cookies, sino de <em>almacenar información o acceder a información ya almacenada en tu equipo terminal</em>. Eso incluye el almacenamiento local de una app y los identificadores de dispositivo. Por transparencia, este es el detalle completo:</p>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Qué se almacena</th><th>Dónde y para qué</th><th>Base y control</th></tr>
+    <tr><td>Tus ajustes de la aplicación</td><td>Almacenamiento local del dispositivo. Recordar duraciones, sonido, tema y acciones al terminar.</td><td>Exento de consentimiento: es imprescindible para prestar el servicio que has solicitado. No sale del dispositivo.</td></tr>
+    <tr><td>Tu decisión sobre el consentimiento (cadena TCF v2.2)</td><td>Almacenamiento local del dispositivo. Recordar qué aceptaste o rechazaste para no volver a preguntártelo en cada uso.</td><td>Exento de consentimiento: almacenar la propia elección es necesario para respetarla. No sale del dispositivo.</td></tr>
+    <tr><td>Identificador de publicidad de Android (AD_ID)</td><td>Lo proporciona el sistema operativo. Personalizar los anuncios y limitar su repetición.</td><td><strong>Consentimiento.</strong> Revocable desde la app; además puedes restablecerlo o eliminarlo desde los ajustes de Android.</td></tr>
+    <tr><td>Cookies y almacenamiento local de Google en los anuncios</td><td>Dentro del componente web en el que se muestra cada anuncio. Medir impresiones, limitar la frecuencia y prevenir el fraude publicitario.</td><td><strong>Consentimiento</strong> para los fines de personalización. Los estrictamente necesarios para servir y facturar el anuncio operan con independencia de aquel.</td></tr>
+    <tr><td>Identificador de instancia de la aplicación (Firebase)</td><td>Almacenamiento local, generado al instalar. Distinguir instalaciones en la analítica de uso y en los informes de fallos.</td><td><strong>Consentimiento</strong> para la analítica. Se genera de nuevo si desinstalas y vuelves a instalar la app.</td></tr>
+  </table>
+  </div>
+  <div class="card">Puedes otorgar, rechazar o <strong>modificar en cualquier momento</strong> el consentimiento sobre todo lo anterior desde <em>Ajustes → Configuración de privacidad</em> dentro de la aplicación. Si lo rechazas, <strong>seguirás viendo anuncios</strong>, pero no personalizados: no se usará tu identificador de publicidad para perfilarlos.</div>
+
+  <h2><span class="num">07</span>Permisos del dispositivo</h2>
   <p>La app solicita los permisos siguientes. Los marcados como opcionales solo se piden si activas la función correspondiente, y la app funciona sin ellos.</p>
   <div class="table-scroll">
   <table>
@@ -217,7 +279,7 @@
   </table>
   </div>
 
-  <h2><span class="num">07</span>Plazos de conservación</h2>
+  <h2><span class="num">08</span>Plazos de conservación</h2>
   <ul>
     <li><strong>Analítica de uso:</strong> Google conserva los datos de eventos y usuario durante un máximo de 14 meses, tras los cuales se eliminan automáticamente. Los informes agregados y anónimos pueden mantenerse indefinidamente.</li>
     <li><strong>Informes de fallos:</strong> se conservan 90 días desde su recepción.</li>
@@ -225,7 +287,7 @@
     <li><strong>Ajustes locales:</strong> permanecen en tu dispositivo hasta que borres los datos de la app o la desinstales.</li>
   </ul>
 
-  <h2><span class="num">08</span>Destinatarios y transferencias internacionales</h2>
+  <h2><span class="num">09</span>Destinatarios y transferencias internacionales</h2>
   <p>Los datos descritos en la sección 03 se tratan por las entidades de <strong>Google</strong> que prestan los servicios de AdMob, Firebase Analytics y Crashlytics, en calidad de proveedores, y por los proveedores publicitarios que hayas aceptado en el formulario de consentimiento. <strong>No se comparten con ningún otro tercero.</strong></p>
   <p>Estos servicios pueden implicar la <strong>transferencia de datos fuera del Espacio Económico Europeo</strong>, principalmente a Estados Unidos. Dichas transferencias se amparan en el <em>EU-U.S. Data Privacy Framework</em> y, subsidiariamente, en las Cláusulas Contractuales Tipo aprobadas por la Comisión Europea.</p>
   <p>Puedes consultar sus políticas aquí:</p>
@@ -235,7 +297,7 @@
     <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacidad y seguridad en Firebase</a></li>
   </ul>
 
-  <h2><span class="num">09</span>Tus derechos</h2>
+  <h2><span class="num">10</span>Tus derechos</h2>
   <p>Puedes ejercer en cualquier momento los derechos de <strong>acceso, rectificación, supresión, limitación, portabilidad y oposición</strong>, así como retirar el consentimiento que hubieras otorgado. Para ello:</p>
   <ul>
     <li><strong>Publicidad:</strong> modifica tu elección desde <em>Ajustes → Configuración de privacidad</em> en la app, o restablece tu identificador de publicidad desde los ajustes de Android.</li>
@@ -244,10 +306,10 @@
   </ul>
   <p>Atenderemos tu solicitud en el plazo máximo de un mes. Si consideras que el tratamiento no se ajusta a la normativa, tienes derecho a presentar una reclamación ante la autoridad de control competente; en España, la <strong>Agencia Española de Protección de Datos</strong> (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
 
-  <h2><span class="num">10</span>Menores de edad</h2>
+  <h2><span class="num">11</span>Menores de edad</h2>
   <p>Nexo Sleep Timer no está dirigida a menores de 14 años (o la edad mínima de consentimiento digital aplicable en tu país, entre 13 y 16 años según la legislación local) y no recoge intencionadamente datos de menores de esa edad. Si detectamos que se han tratado datos de un menor sin la autorización correspondiente, los eliminaremos.</p>
 
-  <h2><span class="num">11</span>Cambios en esta política</h2>
+  <h2><span class="num">12</span>Cambios en esta política</h2>
   <p>Esta política puede actualizarse para reflejar cambios en la aplicación o en la normativa aplicable. La fecha de la última actualización figura siempre al inicio del documento. Si un cambio afectara de forma sustancial al tratamiento de tus datos, se te informará dentro de la propia aplicación.</p>
 
   <footer>
@@ -255,6 +317,203 @@
     Contacto: rodrigo.robledogarcia.dev@gmail.com
   </footer>
 
+</div><!-- /lang-es -->
+
+<div class="lang" id="lang-en" lang="en">
+
+  <header>
+    <p class="eyebrow">Nexo Sleep Timer · Legal document</p>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Last updated: 31 July 2026</p>
+  </header>
+
+  <p class="translation-note">This is a courtesy translation of the Spanish original. In the event of any discrepancy, the Spanish version prevails.</p>
+
+  <p>This policy explains what data <strong>Nexo Sleep Timer</strong> (application ID <code>com.roxcraft.nexosleeptimer</code>) processes, for what purpose, on what legal basis, for how long, and what choices you have. It is written in accordance with the General Data Protection Regulation (GDPR, EU 2016/679) and Spanish Organic Law 3/2018 (LOPDGDD).</p>
+
+  <h2><span class="num">01</span>Data controller</h2>
+  <p>The data controller is Rodrigo Robledo García, an independent developer publishing under the trade name <strong>RoxCraft</strong>. For any privacy-related enquiry, or to exercise your rights:</p>
+  <div class="card"><strong>Contact:</strong> rodrigo.robledogarcia.dev@gmail.com</div>
+
+  <h2><span class="num">02</span>Summary: what we do NOT do</h2>
+  <p>Before the detail, it is worth making the limits of the processing clear:</p>
+  <ul>
+    <li>The app <strong>requires no registration and no user account</strong>. We do not ask for your name, email address, phone number or any identifying data.</li>
+    <li><strong>We request no location permission whatsoever.</strong> The app never accesses GPS or your precise location.</li>
+    <li><strong>We do not access your contacts, photos, files, microphone or camera.</strong></li>
+    <li><strong>We do not read the content of your notifications</strong>, not even when you grant the access described in section 07.</li>
+    <li><strong>We do not sell data</strong> to third parties, nor use it for any purpose other than those described here.</li>
+  </ul>
+
+  <h3>Data that never leaves your device</h3>
+  <p>Your configuration is stored <strong>solely in your device's local storage</strong> and is never sent to any server: timer durations, the actions enabled on finish, the chosen ambient sound, the selected alarm tone, the theme and the language. If you uninstall the app, that information goes with it.</p>
+
+  <h2><span class="num">03</span>Data that is collected</h2>
+  <p>The data processed comes from the Google services integrated into the app. None of it identifies you directly by name.</p>
+
+  <h3>a) Advertising — Google AdMob</h3>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Data</th><th>Purpose</th></tr>
+    <tr><td>Android advertising identifier (AD_ID)</td><td>Serve ads and cap how often they repeat. It is only used for personalised advertising if you consent.</td></tr>
+    <tr><td>IP address and the approximate location derived from it (country, region)</td><td>Serve ads suited to the market and meet legal requirements by territory. <strong>This is not precise or GPS location.</strong></td></tr>
+    <tr><td>Ad interactions (impressions, clicks)</td><td>Measurement, billing and advertising fraud prevention.</td></tr>
+    <tr><td>Technical device information (model, Android version, language)</td><td>Adapt the ad format and prevent fraud.</td></tr>
+  </table>
+  </div>
+
+  <h3>b) Usage analytics — Firebase Analytics</h3>
+  <p>Firebase Analytics automatically collects the following, tied to a <strong>pseudonymous installation identifier</strong> (not to you as a person):</p>
+  <ul>
+    <li>Application instance identifier, generated on installation.</li>
+    <li>Device model, Android version, language, carrier and approximate country / region (derived from the IP address).</li>
+    <li>Sessions, first open, updates and screens viewed within the app.</li>
+  </ul>
+  <p>In addition, the app records the following <strong>events of its own</strong>, and no others:</p>
+  <ul>
+    <li>Starting, completing or cancelling a timer, including the screen used and the duration configured.</li>
+    <li>The outcome (granted or denied) of each permission request, and the screen it was requested from.</li>
+    <li>Preferences chosen: ambient sound, alarm source, actions enabled on finish and their execution mode, time picker style and visual theme.</li>
+  </ul>
+  <div class="card">All of these events are <strong>aggregated and anonymous in practice</strong>: they record <em>what</em> is used, never <em>who</em> uses it. They are not linked to any identifying data, because the app holds none.</div>
+
+  <h3>c) Crash reports — Firebase Crashlytics</h3>
+  <p>When the app closes unexpectedly or detects an error, a technical report is sent containing the stack trace, the device model, the Android version, the app version and a pseudonymous installation identifier. It does not include the contents of your settings.</p>
+
+  <h2><span class="num">04</span>Legal basis for each processing activity</h2>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Processing</th><th>Legal basis (Art. 6 GDPR)</th></tr>
+    <tr><td>Personalised advertising and storage of identifiers on the device</td><td><strong>Consent</strong> (Art. 6(1)(a)), obtained through the form described in section 05. Withdrawable at any time.</td></tr>
+    <tr><td>Non-personalised advertising</td><td><strong>Legitimate interest</strong> (Art. 6(1)(f)) in financially sustaining a free app, where you decline personalisation.</td></tr>
+    <tr><td>Usage analytics</td><td><strong>Consent</strong> (Art. 6(1)(a)). If you do not give it, analytics collection remains disabled.</td></tr>
+    <tr><td>Crash reports and stability</td><td><strong>Legitimate interest</strong> (Art. 6(1)(f)) in keeping the app secure and functional.</td></tr>
+    <tr><td>Settings stored on the device</td><td>No processing on our part: the data never leaves your device.</td></tr>
+  </table>
+  </div>
+
+  <h2><span class="num">05</span>Advertising and consent</h2>
+  <p>The app displays advertising (a banner, and an occasional interstitial when you start a timer) through Google AdMob.</p>
+  <p>If you are in the <strong>European Economic Area, the United Kingdom or Switzerland</strong>, the first time you open the app you will see a consent form managed by Google's User Messaging Platform (UMP), certified by Google and integrated with IAB's Transparency and Consent Framework, <strong>TCF v2.2</strong>. There you can accept or reject the various advertising purposes and review the full list of participating vendors.</p>
+  <p><strong>You may change or withdraw your decision at any time</strong> from <em>Settings → Privacy settings</em> within the app. Withdrawing consent does not affect the lawfulness of processing carried out beforehand.</p>
+  <p>Independently of the above, Android lets you <strong>reset or delete your advertising identifier</strong> from <em>System settings → Google → Ads</em>.</p>
+
+  <h2><span class="num">06</span>Storage on your device and similar technologies</h2>
+  <p>Nexo Sleep Timer <strong>does not use cookies of its own</strong>: it is a native Android application, with no browser and no web sessions tied to this site. That said, the law on this matter — Article 5(3) of Directive 2002/58/EC and, in Spain, Article 22(2) of the LSSI — is technology-neutral: it does not speak of cookies, but of <em>storing information, or gaining access to information already stored, in your terminal equipment</em>. That covers an app's local storage and device identifiers. For the sake of transparency, here is the full picture:</p>
+  <div class="table-scroll">
+  <table>
+    <tr><th>What is stored</th><th>Where and what for</th><th>Basis and control</th></tr>
+    <tr><td>Your app settings</td><td>Local device storage. Remembering durations, sound, theme and the actions to run on finish.</td><td>Exempt from consent: strictly necessary to provide the service you asked for. It never leaves your device.</td></tr>
+    <tr><td>Your consent decision (TCF v2.2 string)</td><td>Local device storage. Remembering what you accepted or rejected, so you are not asked again on every use.</td><td>Exempt from consent: storing your choice is necessary in order to honour it. It never leaves your device.</td></tr>
+    <tr><td>Android advertising identifier (AD_ID)</td><td>Provided by the operating system. Personalising ads and capping their repetition.</td><td><strong>Consent.</strong> Withdrawable from within the app; you can also reset or delete it from Android's settings.</td></tr>
+    <tr><td>Google cookies and local storage within the ads</td><td>Inside the web component each ad is rendered in. Measuring impressions, capping frequency and preventing advertising fraud.</td><td><strong>Consent</strong> for personalisation purposes. Those strictly necessary to serve and bill the ad operate independently of it.</td></tr>
+    <tr><td>Application instance identifier (Firebase)</td><td>Local storage, generated on installation. Telling installations apart in usage analytics and crash reports.</td><td><strong>Consent</strong> for analytics. A new one is generated if you uninstall and reinstall the app.</td></tr>
+  </table>
+  </div>
+  <div class="card">You can give, refuse or <strong>change your consent at any time</strong> for all of the above, from <em>Settings → Privacy settings</em> within the app. If you refuse, <strong>you will still see ads</strong>, but they will not be personalised: your advertising identifier will not be used to profile them.</div>
+
+  <h2><span class="num">07</span>Device permissions</h2>
+  <p>The app requests the permissions below. Those marked optional are only requested if you enable the corresponding feature, and the app works without them.</p>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Permission</th><th>What it is used for</th></tr>
+    <tr><td>Notifications</td><td>Show the countdown in progress, with its pause and stop controls, and warn you before it ends.</td></tr>
+    <tr><td>Exact alarms</td><td>Ensure the timer expires punctually even when the device is in deep sleep. This is the permission Android provides for timer and alarm apps.</td></tr>
+    <tr><td>Foreground service</td><td>Keep the countdown and the ambient sound playback alive while you use other apps, or with the screen off.</td></tr>
+    <tr><td>Vibration</td><td>Optional haptic warning before the timer ends.</td></tr>
+    <tr><td>Battery optimisation exemption <em>(optional)</em></td><td>Prevent the system from stopping the timer early. It is only suggested; you may decline.</td></tr>
+    <tr><td>Do Not Disturb access <em>(optional)</em></td><td>Turn on silent mode when the timer ends, if you choose that action, and restore it afterwards.</td></tr>
+    <tr><td>Device administrator <em>(optional)</em></td><td>Turn off and lock the screen when the timer ends, if you choose that action. <strong>A single policy is declared, screen lock</strong>: it cannot wipe the device, change passwords or access any information, and nothing is transmitted through this permission.</td></tr>
+    <tr><td>Notification access <em>(optional)</em></td><td>Detect which applications are playing audio or video, in order to <strong>pause them</strong> when the timer ends, in those apps that ignore the standard methods. The component that receives this access is empty by design: <strong>it does not read, store or transmit the content of your notifications</strong>, and no information ever leaves the device by this route.</td></tr>
+  </table>
+  </div>
+
+  <h2><span class="num">08</span>Retention periods</h2>
+  <ul>
+    <li><strong>Usage analytics:</strong> Google retains event and user data for a maximum of 14 months, after which it is deleted automatically. Aggregated, anonymous reports may be kept indefinitely.</li>
+    <li><strong>Crash reports:</strong> retained for 90 days from receipt.</li>
+    <li><strong>Advertising data:</strong> governed by Google's own retention periods, set out in its policy.</li>
+    <li><strong>Local settings:</strong> they remain on your device until you clear the app's data or uninstall it.</li>
+  </ul>
+
+  <h2><span class="num">09</span>Recipients and international transfers</h2>
+  <p>The data described in section 03 is processed by the <strong>Google</strong> entities that provide the AdMob, Firebase Analytics and Crashlytics services, acting as providers, and by the advertising vendors you have accepted in the consent form. <strong>It is not shared with any other third party.</strong></p>
+  <p>These services may involve the <strong>transfer of data outside the European Economic Area</strong>, chiefly to the United States. Such transfers rely on the <em>EU-U.S. Data Privacy Framework</em> and, in the alternative, on the Standard Contractual Clauses approved by the European Commission.</p>
+  <p>You can consult their policies here:</p>
+  <ul>
+    <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+    <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses data from apps that use its services</a></li>
+    <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy and security in Firebase</a></li>
+  </ul>
+
+  <h2><span class="num">10</span>Your rights</h2>
+  <p>You may exercise at any time your rights of <strong>access, rectification, erasure, restriction, portability and objection</strong>, as well as withdraw any consent you have given. To do so:</p>
+  <ul>
+    <li><strong>Advertising:</strong> change your choice from <em>Settings → Privacy settings</em> in the app, or reset your advertising identifier from Android's settings.</li>
+    <li><strong>Analytics and crashes:</strong> write to the contact address in section 01 setting out your request. Please note that, as these are pseudonymous identifiers, we may need additional information in order to locate the data associated with your installation.</li>
+    <li><strong>Immediate and complete erasure:</strong> uninstalling the application deletes all locally stored data and stops any future collection.</li>
+  </ul>
+  <p>We will respond to your request within a maximum of one month. If you consider that the processing does not comply with the applicable rules, you have the right to lodge a complaint with the competent supervisory authority; in Spain, the <strong>Spanish Data Protection Agency</strong> (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
+
+  <h2><span class="num">11</span>Children</h2>
+  <p>Nexo Sleep Timer is not directed at children under 14 (or the minimum age of digital consent applicable in your country, between 13 and 16 depending on local law) and does not knowingly collect data from children below that age. If we become aware that a child's data has been processed without the appropriate authorisation, we will delete it.</p>
+
+  <h2><span class="num">12</span>Changes to this policy</h2>
+  <p>This policy may be updated to reflect changes in the application or in applicable law. The date of the last update always appears at the top of the document. If a change materially affects the processing of your data, you will be informed within the application itself.</p>
+
+  <footer>
+    Nexo Sleep Timer — RoxCraft (Rodrigo Robledo García)<br>
+    Contact: rodrigo.robledogarcia.dev@gmail.com
+  </footer>
+
+</div><!-- /lang-en -->
+
 </div>
+<script>
+(function () {
+  var VALID = ['es', 'en'];
+  var root = document.documentElement;
+  var bar = document.getElementById('langbar');
+  var buttons = bar.querySelectorAll('button');
+
+  // Prioridad: ?lang= en la URL > #es|#en > idioma del navegador > ingles.
+  // El ingles hace de reserva porque la app se publica en nueve idiomas y es
+  // la lengua franca del resto; el espanol solo se elige si se pide.
+  function initial() {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (VALID.indexOf(q) !== -1) return q;
+    var h = location.hash.replace('#', '');
+    if (VALID.indexOf(h) !== -1) return h;
+    return (navigator.language || 'en').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+  }
+
+  var TITLES = {
+    es: 'Política de Privacidad · Nexo Sleep Timer',
+    en: 'Privacy Policy · Nexo Sleep Timer'
+  };
+
+  function apply(lang, updateUrl) {
+    root.setAttribute('data-lang', lang);
+    root.setAttribute('lang', lang);
+    document.title = TITLES[lang];
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute('aria-pressed', String(buttons[i].dataset.lang === lang));
+    }
+    if (updateUrl && window.history && history.replaceState) {
+      history.replaceState(null, '', location.pathname + '?lang=' + lang);
+    }
+  }
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () {
+      apply(this.dataset.lang, true);
+      window.scrollTo(0, 0);
+    });
+  }
+
+  bar.hidden = false;   // solo se muestra si el script ha corrido
+  apply(initial(), false);
+})();
+</script>
 </body>
 </html>
