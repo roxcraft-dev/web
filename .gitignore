@@ -1,5 +1,6 @@
 # Maquetas y borradores de diseño (no forman parte del sitio publicado)
 *.dc.html
+*-maqueta.html
 support.js
 
 # Sistema operativo / editores

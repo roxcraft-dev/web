@@ -21,9 +21,26 @@ se integra en `main`.
 Sitio estático, sin build ni dependencias. Se abre directamente en el navegador.
 
 - `index.html` — página principal: cabecera, sección *Proyectos* y pie.
-- `privacy-policy.html` — política de privacidad de Nexo Sleep Timer. Enlazada
-  desde la tarjeta de la app en la sección *Proyectos*.
+- `nexosleeptimer/index.html` — página de la app Nexo Sleep Timer, servida en
+  `roxcraft.dev/nexosleeptimer/`. Se llega a ella desde la tarjeta de la app en
+  la sección *Proyectos* de la home.
+- `nexosleeptimer/privacy-policy.html` — política de privacidad de Nexo Sleep
+  Timer, bilingüe español / inglés.
+- `nexosleeptimer/capturas/` — capturas de pantalla de la app, numeradas por el
+  orden en que aparecen en la sección *Capturas* de su página.
+- `privacy-policy.html` — **fichero temporal.** No contiene la política: es solo
+  una redirección (`meta refresh`) hacia `nexosleeptimer/privacy-policy.html`,
+  que es donde vive el documento desde que se creó la página de la app. Existe
+  para no romper la URL antigua `roxcraft.dev/privacy-policy.html`, que puede
+  estar declarada en la ficha de Google Play o enlazada desde dentro de la app.
+  **Pendiente:** una vez confirmado en Play Console que la ficha apunta a la URL
+  nueva, este fichero se borra.
 - `CNAME` — dominio personalizado de GitHub Pages.
+
+Los enlaces entre páginas del sitio son **relativos** (`nexosleeptimer/index.html`,
+`../index.html`), nunca absolutos con barra inicial (`/nexosleeptimer/`): así el
+sitio se puede probar en local abriendo el HTML directamente con `file://`, sin
+levantar un servidor.
 
 Las maquetas y borradores de diseño (`*.dc.html`, `support.js`) están en
 `.gitignore` y no forman parte del sitio publicado.
@@ -32,7 +49,7 @@ Las maquetas y borradores de diseño (`*.dc.html`, `support.js`) están en
 
 - **Modo oscuro permanente** en `index.html`. No hay tema claro ni conmutador de
   tema; no añadir bloques `@media (prefers-color-scheme: light)`.
-- **Excepción:** `privacy-policy.html` conserva a propósito su paleta clara y
+- **Excepción:** la política de privacidad conserva a propósito su paleta clara y
   serif propia (fondo `#fbfaf7`, acento `#2f6f5e`). Es un documento legal con
   identidad propia: **no unificar sus colores con los de la home.**
 - Paleta base: fondo `#121316`, texto `#F2F1EE`, texto secundario `#8B8E94`,
