@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Logo de Nexo Sleep Timer, portado de ic_launcher_foreground.xml del proyecto
+  Android. El viewBox recorta los 72 dp centrales de los 108 del icono
+  adaptativo, que es la zona que el launcher deja ver bajo la mascara.
+  A diferencia del SVG incrustado en index.html, este lleva su propio fondo
+  redondeado (el color de ic_launcher_background) porque se usa como favicon
+  y tiene que sostenerse solo sobre la pestana del navegador.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 18 72 72">
+  <rect x="18" y="18" width="72" height="72" rx="20" fill="#1E1F28"/>
+  <path d="M55,54 A13,13 0 1,1 29,54 A13,13 0 1,1 55,54 Z" fill="none" stroke="#7C83FF" stroke-width="3"/>
+  <path d="M78.01,49.02 A13,13 0 1,0 78.01,58.98 A5,5 0 0,1 77.79,58.95 A10.75,10.75 0 1,1 77.79,49.05 A5,5 0 0,1 78.01,49.02 Z" fill="#B07CFF"/>
+</svg>

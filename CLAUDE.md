@@ -28,6 +28,11 @@ Sitio estático, sin build ni dependencias. Se abre directamente en el navegador
   Timer, bilingüe español / inglés.
 - `nexosleeptimer/capturas/` — capturas de pantalla de la app, numeradas por el
   orden en que aparecen en la sección *Capturas* de su página.
+- `nexosleeptimer/logo.svg` — logo de la app, portado de
+  `ic_launcher_foreground.xml` del proyecto Android. Se usa como favicon de las
+  dos páginas de Nexo Sleep Timer. La home **no lleva favicon** a propósito:
+  RoxCraft-dev todavía no tiene logo propio de desarrollador, y el de una app
+  concreta no representa al sitio entero.
 - `privacy-policy.html` — **fichero temporal.** No contiene la política: es solo
   una redirección (`meta refresh`) hacia `nexosleeptimer/privacy-policy.html`,
   que es donde vive el documento desde que se creó la página de la app. Existe
