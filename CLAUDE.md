@@ -47,18 +47,20 @@ Los enlaces entre páginas del sitio son **relativos** (`nexosleeptimer/index.ht
 sitio se puede probar en local abriendo el HTML directamente con `file://`, sin
 levantar un servidor.
 
-Las maquetas y borradores de diseño (`*.dc.html`, `support.js`) están en
-`.gitignore` y no forman parte del sitio publicado.
+Las maquetas y borradores de diseño (`*.dc.html`, `*-maqueta.html`,
+`support.js`) están en `.gitignore` y no forman parte del sitio publicado.
 
 ## Criterios de diseño
 
-- **Modo oscuro permanente** en `index.html`. No hay tema claro ni conmutador de
-  tema; no añadir bloques `@media (prefers-color-scheme: light)`.
+- **Modo oscuro permanente** en la home y en las páginas de app. No hay tema
+  claro ni conmutador de tema; no añadir bloques
+  `@media (prefers-color-scheme: light)`.
 - **Excepción:** la política de privacidad conserva a propósito su paleta clara y
   serif propia (fondo `#fbfaf7`, acento `#2f6f5e`). Es un documento legal con
   identidad propia: **no unificar sus colores con los de la home.**
 - Paleta base: fondo `#121316`, texto `#F2F1EE`, texto secundario `#8B8E94`,
-  bordes `rgba(255,255,255,.09)`, acento de marca `#7C83FF`.
+  bordes `rgba(255,255,255,.09)`, acento de marca `#7C83FF` y acento secundario
+  `#B07CFF`. Los dos acentos son los del logo de Nexo.
 - Tipografías (Google Fonts): `Space Grotesk` para títulos, `Inter` para texto,
   `Outfit` en las tarjetas de proyecto y `JetBrains Mono` para etiquetas en
   versalitas (eyebrows, badges).
@@ -68,5 +70,15 @@ Las maquetas y borradores de diseño (`*.dc.html`, `support.js`) están en
 ## Estado del contenido
 
 Los literales actuales de la sección *Proyectos* son provisionales y se
-revisarán más adelante. Las apps de la familia **Nexo** figuran como
-*Próximamente*.
+revisarán más adelante.
+
+De la familia **Nexo**, solo **Nexo Mouse & Keyboard Bluetooth** figura como
+*Próximamente*. **Nexo Sleep Timer** ya está publicada en Google Play
+(`com.roxcraft.nexosleeptimer`) y tiene página propia.
+
+### Pendientes
+
+- Borrar `privacy-policy.html` de la raíz cuando Play Console apunte a la URL
+  nueva de la política (ver *Estructura*).
+- La home no tiene favicon: falta un logo de RoxCraft-dev como desarrollador,
+  distinto del de cualquier app concreta.
