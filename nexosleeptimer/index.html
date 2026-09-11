@@ -102,9 +102,13 @@
     border-radius: 20px;
     background: var(--surface-2);
     border: 1px solid var(--border-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+  }
+
+  .app-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .app-family {
@@ -337,11 +341,14 @@
 
   <header class="app-header">
     <div class="app-id">
+      <!-- Logo de la app, portado de ic_launcher_foreground.xml del proyecto
+           Android. El viewBox recorta los 72 dp centrales de los 108 del icono
+           adaptativo, que es justo la zona que el launcher deja ver bajo la
+           mascara; el fondo #1E1F28 del recuadro es el de ic_launcher_background. -->
       <div class="app-icon" aria-hidden="true">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7C83FF" stroke-width="1.6" stroke-linecap="round">
-          <circle cx="12" cy="13" r="8"></circle>
-          <path d="M12 9.5V13l2.5 1.8"></path>
-          <path d="M8.5 2.8 6 4.6M15.5 2.8 18 4.6"></path>
+        <svg viewBox="18 18 72 72" fill="none">
+          <path d="M55,54 A13,13 0 1,1 29,54 A13,13 0 1,1 55,54 Z" stroke="#7C83FF" stroke-width="3"></path>
+          <path d="M78.01,49.02 A13,13 0 1,0 78.01,58.98 A5,5 0 0,1 77.79,58.95 A10.75,10.75 0 1,1 77.79,49.05 A5,5 0 0,1 78.01,49.02 Z" fill="#B07CFF"></path>
         </svg>
       </div>
       <div>
