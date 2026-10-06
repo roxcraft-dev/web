@@ -41,6 +41,12 @@ Sitio estático, sin build ni dependencias. Se abre directamente en el navegador
   **Pendiente:** una vez confirmado en Play Console que la ficha apunta a la URL
   nueva, este fichero se borra.
 - `CNAME` — dominio personalizado de GitHub Pages.
+- `sitemap.xml` — lista de las páginas públicas para los buscadores. Al añadir
+  una página nueva al sitio hay que darla de alta aquí. No incluye
+  `privacy-policy.html` de la raíz, que es la redirección temporal con
+  `noindex`. Sus URLs son absolutas: el formato de sitemap lo exige, y es la
+  única excepción a la regla de enlaces relativos de más abajo.
+- `robots.txt` — permite el rastreo completo del sitio y declara el sitemap.
 
 Los enlaces entre páginas del sitio son **relativos** (`nexosleeptimer/index.html`,
 `../index.html`), nunca absolutos con barra inicial (`/nexosleeptimer/`): así el
