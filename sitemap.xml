@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lista de las paginas publicas del sitio, para Google Search Console.
+     Las URLs de un sitemap deben ser absolutas: es un requisito del formato,
+     no una excepcion a la regla de enlaces relativos entre paginas.
+     No se incluye privacy-policy.html de la raiz: es la redireccion temporal
+     y lleva noindex a proposito. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://roxcraft.dev/</loc>
+    <lastmod>2026-09-11</lastmod>
+  </url>
+  <url>
+    <loc>https://roxcraft.dev/nexosleeptimer/</loc>
+    <lastmod>2026-09-11</lastmod>
+  </url>
+  <url>
+    <loc>https://roxcraft.dev/nexosleeptimer/privacy-policy.html</loc>
+    <lastmod>2026-09-11</lastmod>
+  </url>
+</urlset>
